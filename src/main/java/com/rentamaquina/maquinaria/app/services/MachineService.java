@@ -7,14 +7,13 @@ package com.rentamaquina.maquinaria.app.services;
 
 import com.rentamaquina.maquinaria.app.entities.Machine;
 import com.rentamaquina.maquinaria.app.repositories.MachineRepository;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Daniel Serna
+ * @author daan_
  */
 @Service
 public class MachineService {
@@ -45,12 +44,11 @@ public class MachineService {
      * @return 
      */
     public Machine updateMachine(Machine machine){
-        Machine existingMachine = repository.findById(machine.getId()).orElse(null);
+        /*Machine existingMachine = repository.findById(machine.getId()).orElse(null);
         existingMachine.setName(machine.getName());
         existingMachine.setBrand(machine.getBrand());
-        existingMachine.setModel(machine.getModel());
-        existingMachine.setCategory_id(machine.getCategory_id());
-        return repository.save(existingMachine);
+        existingMachine.setYear(machine.getYear());*/
+        return null;
     }
     
     /**
@@ -59,7 +57,7 @@ public class MachineService {
      * @return 
      */
     public String deleteMachine(int id){
-        repository.deleteById(id);
-        return "Maquina eliminada "+ id;
+        //repository.deleteById(id);
+        return null;
     }
 }

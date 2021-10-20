@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author Daniel Serna 
+ * @author daan_
  */
 public interface MessageRepository extends JpaRepository<Message,Integer> {
     

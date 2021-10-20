@@ -7,14 +7,13 @@ package com.rentamaquina.maquinaria.app.services;
 
 import com.rentamaquina.maquinaria.app.entities.Message;
 import com.rentamaquina.maquinaria.app.repositories.MessageRepository;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Daniel Serna 
+ * @author daan_
  */
 @Service
 public class MessageService {
@@ -45,9 +44,9 @@ public class MessageService {
      * @return 
      */
     public Message updateMessage(Message message){
-        Message existingMessage = repository.findById(message.getId()).orElse(null);
-        existingMessage.setMessagetext(message.getMessagetext());
-        return repository.save(existingMessage);
+        //Message existingMessage = repository.findById(message.getId()).orElse(null);
+        //existingMessage.setMessagetext(message.getMessagetext());
+        return null;
     }
     
     /**
@@ -56,7 +55,7 @@ public class MessageService {
      * @return 
      */
     public String deleteMessage(int id){
-        repository.deleteById(id);
-        return "Mensaje eliminado "+ id;
+        //repository.deleteById(id);
+        return null;
     }
 }

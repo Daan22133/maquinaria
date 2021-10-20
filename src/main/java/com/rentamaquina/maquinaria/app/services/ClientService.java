@@ -7,14 +7,13 @@ package com.rentamaquina.maquinaria.app.services;
 
 import com.rentamaquina.maquinaria.app.entities.Client;
 import com.rentamaquina.maquinaria.app.repositories.ClientRepository;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Daniel Serna 
+ * @author daan_
  */
 @Service
 public class ClientService {
@@ -45,11 +44,11 @@ public class ClientService {
      * @return 
      */
     public Client updateClient(Client client){
-        Client existingClient = repository.findById(client.getId()).orElse(null);
+        /*Client existingClient = repository.findById(client.getIdClient()).orElse(null);
         existingClient.setName(client.getName());
         existingClient.setEmail(client.getEmail());
-        existingClient.setAge(client.getAge());
-        return repository.save(existingClient);
+        existingClient.setAge(client.getAge());*/
+        return null;
     }
     
     /**
@@ -58,8 +57,7 @@ public class ClientService {
      * @return 
      */
     public String deleteClient(int id){
-        repository.deleteById(id);
-        return "Cliente eliminado "+ id;
-
+        /*repository.deleteById(id);*/
+        return null;
     }
 }

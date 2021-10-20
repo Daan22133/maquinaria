@@ -10,9 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author Daniel Serna
+ * @author daan_
  */
 public interface MachineRepository extends JpaRepository<Machine,Integer> {
-    
     
 }

@@ -6,11 +6,10 @@
 package com.rentamaquina.maquinaria.app.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -19,24 +18,21 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author daniel serna
+ * @author Daniel Serna
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="client")
-public class Client implements Serializable {
-    
+@Table(name="reservation")
+public class Reservation implements Serializable{
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int idClient;
-    @Column(length=50)
-    private String name;
-    private int age;
-    @Column(name="email",nullable=false,length=50,unique=true)
-    private String email;
-    private String password;
+    @GeneratedValue
+    private int idReservation;
+    private Date startDate;
+    private Date devolutionDate;
+    private String status;
+    private Machine machine;
     private List<Message> messages;
-    private List<Reservation> reservations;
+    private Client client;
 }

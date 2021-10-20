@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Daniel Serna
+ * @Daniel serna
  */
 @Data
 @AllArgsConstructor

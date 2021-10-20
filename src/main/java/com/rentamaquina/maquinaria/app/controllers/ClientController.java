@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Daniel Serna
+ * @author fdomoreno
  */
 @RestController
 @RequestMapping("Client")
@@ -47,7 +47,7 @@ public class ClientController {
     
     @DeleteMapping("/delete")
     public ResponseEntity deleteClient(@RequestBody Client client){
-        service.deleteClient(client.getId());
+        service.deleteClient(client.getIdClient());
         return ResponseEntity.status(204).build();
     }
 }
