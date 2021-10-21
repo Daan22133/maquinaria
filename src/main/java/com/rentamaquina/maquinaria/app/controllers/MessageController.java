@@ -47,7 +47,7 @@ public class MessageController {
     
     @DeleteMapping("/delete")
     public ResponseEntity deleteMessage(@RequestBody Message message){
-        service.deleteMessage(message.getId());
+        service.deleteMessage(message.getIdMessage());
         return ResponseEntity.status(204).build();
     }
 }
