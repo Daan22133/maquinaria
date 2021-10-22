@@ -5,10 +5,9 @@
  */
 package com.rentamaquina.maquinaria.app.repositories;
 
-
-import com.rentamaquina.maquinaria.app.repositories.crud.ClientCRUDRepository;
+import com.rentamaquina.maquinaria.app.entities.Admin;
+import com.rentamaquina.maquinaria.app.repositories.crud.AdminCRUDRepository;
 import java.util.List;
-import com.rentamaquina.maquinaria.app.entities.Client;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,42 +17,41 @@ import org.springframework.stereotype.Repository;
  * @author daan_
  */
 @Repository
-public class ClientRepository {
+public class AdminRepository {
     @Autowired
-    private ClientCRUDRepository clientCrudRepository;
+    private AdminCRUDRepository adminCrudRepository;
     
     /**
      * Select
      * @return 
      */
-    public List<Client> getAll(){
-        return (List<Client>) clientCrudRepository.findAll();
+    public List<Admin> getAll(){
+        return (List<Admin>) adminCrudRepository.findAll();
     }
     
     /**
      * Insert
-     * @param client
+     * @param admin
      * @return 
      */
-    public Client save(Client client){
-       return clientCrudRepository.save(client);
+    public Admin save(Admin admin){
+       return adminCrudRepository.save(admin);
     } 
     
     /**
      * Buscar registro
-     * @param clientId
+     * @param adminId
      * @return
      */
-    public Optional<Client> getClient(int clientId){
-        return clientCrudRepository.findById(clientId);
+    public Optional<Admin> getAdmin(int adminId){
+        return adminCrudRepository.findById(adminId);
     }
     
     /**
      * Delete
-     * @param client
+     * @param admin
      */
-    public void delete(Client client){
-        clientCrudRepository.delete(client);
+    public void delete(Admin admin){
+        adminCrudRepository.delete(admin);
     }
 }
-

@@ -8,6 +8,7 @@ package com.rentamaquina.maquinaria.app.services;
 import com.rentamaquina.maquinaria.app.entities.Category;
 import com.rentamaquina.maquinaria.app.repositories.CategoryRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,54 +16,83 @@ import org.springframework.stereotype.Service;
  *
  * @author daan_
  */
-
 @Service
 public class CategoryService {
-    
-        
-        
     @Autowired
     private CategoryRepository repository;
     
     /**
-     * GET Consultar Todos los registros.
+     * GET
      * @return 
      */
-    public List<Category> getCategories(){
-        return repository.findAll();
+    public List<Category> getAll(){
+        return repository.getAll();
     }
     
     /**
-     * POST Crear o Registrar.
+     * Buscar por ID
+     * @param categoryId
+     * @return 
+     */
+    public Optional<Category> getCategory(int categoryId){
+        return repository.getCategory(categoryId);
+    }
+    
+    /**
+     * POST
      * @param category
      * @return 
      */
-    public Category saveCategory(Category category){
-        return repository.save(category);
+    public Category save(Category category){
+        if(category.getId()== null){
+            return repository.save(category);
+        }else{
+            Optional<Category> resultado = repository.getCategory(category.getId());
+            if(resultado.isPresent()){
+                return category;
+            }else{
+                return repository.save(category);
+            }
+        }
     }
     
     /**
-     * PUT Actualizar o Editar
+     * UPDATE
      * @param category
      * @return 
      */
-    public Category updateCategory(Category category){
-        Category existingCategory = repository.findById(category.getId()).orElse(null);
-        existingCategory.setName(category.getName());
-        existingCategory.setDescription(category.getDescription());
-        
-       
-        return repository.save(existingCategory);
+    public Category update(Category category){
+        if(category.getId()!=null){
+            Optional<Category> resultado = repository.getCategory(category.getId());
+            if(resultado.isPresent()){
+                if(category.getName()!=null){
+                    resultado.get().setName(category.getName());
+                }
+                if(category.getDescription()!=null){
+                    resultado.get().setDescription(category.getDescription());
+                }
+                repository.save(resultado.get());
+                return resultado.get();
+            }else{
+                return category;
+            }
+        }else{
+            return category;
+        }
     }
     
     /**
-     * DELETE Eliminar
-     * @param id
+     * DELETE
+     * @param categoryId
      * @return 
      */
-    public String deleteCategory(int id){
-        repository.deleteById(id);
-        return "Reservacion eliminada "+ id;
+    public boolean deleteCategory(int categoryId) {
+        Boolean aBoolean = getCategory(categoryId).map(category -> {
+            repository.delete(category);
+            return true;
+        }).orElse(false);
+        return aBoolean;
     }
+
     
 }

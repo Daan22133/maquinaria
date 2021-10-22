@@ -5,12 +5,11 @@
  */
 package com.rentamaquina.maquinaria.app.controllers;
 
-import com.rentamaquina.maquinaria.app.entities.Message;
-import com.rentamaquina.maquinaria.app.services.MessageService;
+import com.rentamaquina.maquinaria.app.entities.Admin;
+import com.rentamaquina.maquinaria.app.services.AdminService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,36 +19,58 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 /**
  *
  * @author daan_
  */
 @RestController
-@RequestMapping("Message")
-public class MessageController {
+@RequestMapping("Admin")
+public class AdminController {
+   
     @Autowired
-    private MessageService service;
-    
+    private AdminService service;
+	    
+    /**
+     * GET
+     * @return 
+     */
     @GetMapping("/all")
-    public List<Message> findAllClient(){
+    public List<Admin> getAdmins(){
         return service.getAll();
     }
-    
+	    
+    /**
+     * POST
+     * @param admin
+     * @return 
+     */
     @PostMapping("/save")
-    public ResponseEntity addMachine(@RequestBody Message message){
-        service.save(message);
-        return ResponseEntity.status(201).build();
+    @ResponseStatus(HttpStatus.CREATED)
+    public Admin save(@RequestBody Admin admin) {
+        return service.save(admin);
     }
     
+    /**
+     * PUT
+     * @param admin
+     * @return 
+     */
     @PutMapping("/update")
-    public ResponseEntity updateMachine(@RequestBody Message message){
-        service.update(message);
-        return ResponseEntity.status(201).build();
+    @ResponseStatus(HttpStatus.CREATED)
+    public Admin update(@RequestBody Admin admin) {
+        return service.update(admin);
     }
     
+    /**
+     * DELETE
+     * @param adminId
+     * @return 
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int messageId) {
-        return service.deleteMessage(messageId);
+    public boolean delete(@PathVariable("id") int adminId) {
+        return service.deleteAdmin(adminId);
     }
+    
 }

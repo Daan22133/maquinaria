@@ -5,10 +5,9 @@
  */
 package com.rentamaquina.maquinaria.app.repositories;
 
-
-import com.rentamaquina.maquinaria.app.repositories.crud.ClientCRUDRepository;
+import com.rentamaquina.maquinaria.app.entities.Score;
+import com.rentamaquina.maquinaria.app.repositories.crud.ScoreCRUDRepository;
 import java.util.List;
-import com.rentamaquina.maquinaria.app.entities.Client;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,42 +17,41 @@ import org.springframework.stereotype.Repository;
  * @author daan_
  */
 @Repository
-public class ClientRepository {
+public class ScoreRepository {
     @Autowired
-    private ClientCRUDRepository clientCrudRepository;
+    private ScoreCRUDRepository scoreCrudRepository;
     
     /**
      * Select
      * @return 
      */
-    public List<Client> getAll(){
-        return (List<Client>) clientCrudRepository.findAll();
+    public List<Score> getAll(){
+        return (List<Score>) scoreCrudRepository.findAll();
     }
     
     /**
      * Insert
-     * @param client
+     * @param score
      * @return 
      */
-    public Client save(Client client){
-       return clientCrudRepository.save(client);
+    public Score save(Score score){
+       return scoreCrudRepository.save(score);
     } 
     
     /**
      * Buscar registro
-     * @param clientId
+     * @param scoreId
      * @return
      */
-    public Optional<Client> getClient(int clientId){
-        return clientCrudRepository.findById(clientId);
+    public Optional<Score> getScore(int scoreId){
+        return scoreCrudRepository.findById(scoreId);
     }
     
     /**
      * Delete
-     * @param client
+     * @param score
      */
-    public void delete(Client client){
-        clientCrudRepository.delete(client);
+    public void delete(Score score){
+        scoreCrudRepository.delete(score);
     }
 }
-

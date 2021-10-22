@@ -5,12 +5,11 @@
  */
 package com.rentamaquina.maquinaria.app.controllers;
 
-import com.rentamaquina.maquinaria.app.entities.Message;
-import com.rentamaquina.maquinaria.app.services.MessageService;
+import com.rentamaquina.maquinaria.app.entities.Score;
+import com.rentamaquina.maquinaria.app.services.ScoreService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,36 +19,58 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 /**
  *
  * @author daan_
  */
 @RestController
-@RequestMapping("Message")
-public class MessageController {
+@RequestMapping("Score")
+public class ScoreController {
+   
     @Autowired
-    private MessageService service;
-    
+    private ScoreService service;
+	    
+    /**
+     * GET
+     * @return 
+     */
     @GetMapping("/all")
-    public List<Message> findAllClient(){
+    public List<Score> getScores(){
         return service.getAll();
     }
-    
+	    
+    /**
+     * POST
+     * @param category
+     * @return 
+     */
     @PostMapping("/save")
-    public ResponseEntity addMachine(@RequestBody Message message){
-        service.save(message);
-        return ResponseEntity.status(201).build();
+    @ResponseStatus(HttpStatus.CREATED)
+    public Score save(@RequestBody Score category) {
+        return service.save(category);
     }
     
+    /**
+     * PUT
+     * @param category
+     * @return 
+     */
     @PutMapping("/update")
-    public ResponseEntity updateMachine(@RequestBody Message message){
-        service.update(message);
-        return ResponseEntity.status(201).build();
+    @ResponseStatus(HttpStatus.CREATED)
+    public Score update(@RequestBody Score category) {
+        return service.update(category);
     }
     
+    /**
+     * DELETE
+     * @param scoreId
+     * @return 
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int messageId) {
-        return service.deleteMessage(messageId);
+    public boolean delete(@PathVariable("id") int scoreId) {
+        return service.deleteScore(scoreId);
     }
+    
 }

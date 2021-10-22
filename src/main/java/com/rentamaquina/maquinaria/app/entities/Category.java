@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author daniel serna
+ * @author daan_
  */
 @Data
 @AllArgsConstructor
@@ -32,7 +32,7 @@ public class Category implements Serializable {
 	    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String description;
 	

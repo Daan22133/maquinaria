@@ -7,8 +7,7 @@ package com.rentamaquina.maquinaria.app.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.List;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Daniel Serna
+ * @author daan_
  */
 @Data
 @AllArgsConstructor
@@ -32,7 +31,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="reservation")
 public class Reservation implements Serializable{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;

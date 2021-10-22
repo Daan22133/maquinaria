@@ -19,11 +19,11 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 /**
  *
- * @author daniel serna
+ * @author daan_
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,12 +33,12 @@ public class Client implements Serializable {
 	    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idClient;
+    private Integer idClient;
+    private String email;
+    private String password;
     @Column(length=50)
     private String name;
     private int age;
-    private String email;
-    private String password;
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy="client")
     @JsonIgnoreProperties("client")
     private List<Message> messages;
