@@ -6,6 +6,8 @@
 package com.rentamaquina.maquinaria.app.controllers;
 
 import com.rentamaquina.maquinaria.app.entities.Reservation;
+import com.rentamaquina.maquinaria.app.entities.custom.CountClient;
+import com.rentamaquina.maquinaria.app.entities.custom.DescriptionAmount;
 import com.rentamaquina.maquinaria.app.services.ReservationService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +52,8 @@ public class ReservationController {
      */
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation save(@RequestBody Reservation category) {
-        return service.save(category);
+    public Reservation save(@RequestBody Reservation reservation) {
+        return service.save(reservation);
     }
     
     /**
@@ -61,8 +63,8 @@ public class ReservationController {
      */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation update(@RequestBody Reservation category) {
-        return service.update(category);
+    public Reservation update(@RequestBody Reservation reservation) {
+        return service.update(reservation);
     }
     
     /**
@@ -76,4 +78,22 @@ public class ReservationController {
         return service.deleteReservation(ReservationId);
     }
     
+    
+    @GetMapping("/report-status}")
+    public DescriptionAmount getReservationDescriptionStatus(){
+	return service.getStatusReport();
+    } 
+    
+    @GetMapping("/report-client}")
+    public List<CountClient> getCountClient(){
+	return service.getTopClient();
+    } 
+    
+    
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getDatesReport(
+    @PathVariable("dateOne") String d1,@PathVariable("dateTwo") String d2){
+	return service.getReservationPeriod(d1,d2);
+    }
 }

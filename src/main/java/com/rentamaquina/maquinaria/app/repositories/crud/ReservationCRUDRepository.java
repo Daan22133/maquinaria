@@ -5,8 +5,12 @@
  */
 package com.rentamaquina.maquinaria.app.repositories.crud;
 
+import com.rentamaquina.maquinaria.app.entities.Machine;
 import com.rentamaquina.maquinaria.app.entities.Reservation;
+import java.util.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -14,4 +18,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ReservationCRUDRepository extends JpaRepository<Reservation,Integer>{
     
+    
+    @Query("select c.client, COUNT(c.client) from Reservation AS c group by c.client order by COUNT(c.client) desc")
+    public List<Object[]> countTotalReservationByClient();
+    public List<Reservation> findAllByStartDateAfterAndStartDateBefore(Date dateOne,Date dateTwo);
+    public List<Reservation> findAllByStatus (String status);
 }
