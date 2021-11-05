@@ -108,9 +108,7 @@ public class ReservationService {
 
     public List<CountClient> getTopClient(){
     return repository.getTopClient();
-    }
-     
-    
+    }  
  
 public DescriptionAmount getStatusReport(){
     List<Reservation> completed = repository.getReservationByStatus("completed");
@@ -133,7 +131,7 @@ public DescriptionAmount getStatusReport(){
             e.printStackTrace();
         }
         if(dateOne.before(dateTwo)){
-            return repository.getReservationPeriod(dateOne,dateTwo);
+            return repository.getReservationByPeriod(dateOne,dateTwo);
         }else{
             return new ArrayList<>();
         }

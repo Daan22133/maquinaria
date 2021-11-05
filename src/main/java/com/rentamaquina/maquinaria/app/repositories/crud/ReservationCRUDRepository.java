@@ -18,9 +18,10 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface ReservationCRUDRepository extends JpaRepository<Reservation,Integer>{
     
-    
-    @Query("select c.client, COUNT(c.client) from Reservation AS c group by c.client order by COUNT(c.client) desc")
-    public List<Object[]> countTotalReservationByClient();
     public List<Reservation> findAllByStartDateAfterAndStartDateBefore(Date dateOne,Date dateTwo);
     public List<Reservation> findAllByStatus (String status);
+    @Query("select c.client, COUNT(c.client) from Reservation AS c group by c.client order by COUNT(c.client) desc")
+    public List<Object[]> countTotalReservationByClient();
+    
+
 }

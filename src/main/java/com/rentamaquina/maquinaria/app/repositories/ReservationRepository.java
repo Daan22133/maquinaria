@@ -27,7 +27,7 @@ public class ReservationRepository {
     private ReservationCRUDRepository reservationCrudRepository;
     
     
-      public List<Reservation> getReservationPeriod(Date dateOne,Date dateTwo){
+      public List<Reservation> getReservationByPeriod(Date dateOne,Date dateTwo){
         return reservationCrudRepository.findAllByStartDateAfterAndStartDateBefore(dateOne,dateTwo);
     }  
     

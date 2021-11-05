@@ -47,7 +47,7 @@ public class ReservationController {
 	    
     /**
      * POST
-     * @param category
+     * @param reservation
      * @return 
      */
     @PostMapping("/save")
@@ -58,7 +58,7 @@ public class ReservationController {
     
     /**
      * PUT
-     * @param category
+     * @param reservation
      * @return 
      */
     @PutMapping("/update")
@@ -79,16 +79,16 @@ public class ReservationController {
     }
     
     
-    @GetMapping("/report-status}")
-    public DescriptionAmount getReservationDescriptionStatus(){
+    @GetMapping("/report-status")
+    public DescriptionAmount getReservationStatus(){
 	return service.getStatusReport();
     } 
     
-    @GetMapping("/report-client}")
+    
+    @GetMapping("report-clients")
     public List<CountClient> getCountClient(){
 	return service.getTopClient();
     } 
-    
     
     
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
@@ -96,4 +96,5 @@ public class ReservationController {
     @PathVariable("dateOne") String d1,@PathVariable("dateTwo") String d2){
 	return service.getReservationPeriod(d1,d2);
     }
+    
 }
